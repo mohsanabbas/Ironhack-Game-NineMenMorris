@@ -1,5 +1,4 @@
-let playerOneCode = 1;
-let playerTwoCode = 2;
+
 let redBlocks = 0;
 let greenBlocks = 0;
 let isMillRed = false;
@@ -19,7 +18,7 @@ let rows = 7;
 let columns = 7;
 let clickSound;
 let positionMatrix = [];
-let referenceMatrix = [];
+
 let canvas = document.getElementById('myCanvas');
 let context = canvas.getContext('2d');
 
@@ -44,7 +43,7 @@ function sound(src) {
 
 function initializeArray() {
   for (let i = 0; i < 7; i++) {
-    referenceMatrix[i] = new Array(7);
+    // referenceMatrix[i] = new Array(7);
     positionMatrix[i] = new Array(7);
   }
 
@@ -52,16 +51,14 @@ function initializeArray() {
     for (let k = 0; k < 7; k++) {
       // Make all diagonal elements + boundary + center to zero
       if ((j == 3) || (k == 3) || (j == k) || (j + k == 6)) {
-        referenceMatrix[j][k] = 0;
+        // referenceMatrix[j][k] = 0;
         positionMatrix[j][k] = 0;
       } else {
-        // referenceMatrix[j][k] = -1;
         positionMatrix[j][k] = -1;
       }
     }
   }
-  // Finally making center also -1
-  // referenceMatrix[3][3] = -1;
+  
   positionMatrix[3][3] = -1;
 
 }
@@ -259,6 +256,78 @@ function makeMove(X, Y) {
       }
   }
 //checking mill
+function checkMill(x, y, playerCode) {
+  //Using the fact that two mills cannot occur simultaneously
+  var flag = 0;
+  var temp = 0;
+  //Transverse through the given row and column and check for mill
+  for (var i = 0; i < 5; i++) {
+    flag = 0;
+    for (var j = temp; j < temp + 3; j++) {
+      if (positionMatrix[j][y] == playerCode) {
+        continue;
+      } else {
+        flag = 1;
+        break;
+      }
+    }
+    if (flag == 0) {
+      //console.log("This is from : " + 1);
+      return true;
+    }
+    temp++;
+
+  }
+
+  flag = 0;
+  temp = 0;
+  //Now moving along the given column
+  for (var k = 0; k < 5; k++) {
+    flag = 0;
+    for (var l = temp; l < temp + 3; l++) {
+      if (positionMatrix[x][l] == playerCode) {
+        continue;
+      } else {
+        flag = 1;
+        break;
+      }
+    }
+    if (flag == 0) {
+      // console.log("This is from : " + 2);
+      return true;
+    } else {
+      temp++;
+    }
+  }
+
+  var check = true;
+  var oppositeCode = (playerCode == 1) ? 2 : 1;
+  for (var a = 0; a < 7; a++) {
+    if ((positionMatrix[a][y] == oppositeCode) || (positionMatrix[a][y] == 0)) {
+      check = false;
+      break;
+    }
+  }
+  if (check == true) {
+    //console.log("This is from : " + 3);
+    return true;
+  }
+  check = true;
+
+  for (var b = 0; b < 7; b++) {
+    //Check for any empty element of any element of anther type
+    if ((positionMatrix[x][b] == oppositeCode) || (positionMatrix[x][b] == 0)) {
+      check = false;
+      break;
+    }
+  }
+  if (check == true) {
+    //console.log("This is from : " + 4);
+    return true;
+  }
+
+  return false;
+}
   if (isMillGreen || isMillRed) { 
 //checking mill if green
     let playerCode = (isMillGreen) ? 1 : 2; //creatin a variable for millgreen
@@ -425,13 +494,6 @@ function makeMove(X, Y) {
     }
 
   }
-  //
-  // for (var r = 0; r < 7; r++) {
-  //     console.log(positionMatrix[0][r] + "\t" + positionMatrix[1][r] + "\t" + positionMatrix[2][r] + "\t" +
-  //         positionMatrix[3][r] + "\t" + positionMatrix[4][r] + "\t" + positionMatrix[5][r] + "\t" + positionMatrix[6][r]);
-  // }
-
-  checkGameOver();
 }
 
 canvas.addEventListener('click', mouseClick);
@@ -562,78 +624,7 @@ function drawBlock(x, y, X, Y) {
   update();
 }
 
-function checkMill(x, y, playerCode) {
-  //Using the fact that two mills cannot occur simultaneously
-  var flag = 0;
-  var temp = 0;
-  //Transverse through the given row and column and check for mill
-  for (var i = 0; i < 5; i++) {
-    flag = 0;
-    for (var j = temp; j < temp + 3; j++) {
-      if (positionMatrix[j][y] == playerCode) {
-        continue;
-      } else {
-        flag = 1;
-        break;
-      }
-    }
-    if (flag == 0) {
-      //console.log("This is from : " + 1);
-      return true;
-    }
-    temp++;
 
-  }
-
-  flag = 0;
-  temp = 0;
-  //Now moving along the given column
-  for (var k = 0; k < 5; k++) {
-    flag = 0;
-    for (var l = temp; l < temp + 3; l++) {
-      if (positionMatrix[x][l] == playerCode) {
-        continue;
-      } else {
-        flag = 1;
-        break;
-      }
-    }
-    if (flag == 0) {
-      // console.log("This is from : " + 2);
-      return true;
-    } else {
-      temp++;
-    }
-  }
-
-  var check = true;
-  var oppositeCode = (playerCode == 1) ? 2 : 1;
-  for (var a = 0; a < 7; a++) {
-    if ((positionMatrix[a][y] == oppositeCode) || (positionMatrix[a][y] == 0)) {
-      check = false;
-      break;
-    }
-  }
-  if (check == true) {
-    //console.log("This is from : " + 3);
-    return true;
-  }
-  check = true;
-
-  for (var b = 0; b < 7; b++) {
-    //Check for any empty element of any element of anther type
-    if ((positionMatrix[x][b] == oppositeCode) || (positionMatrix[x][b] == 0)) {
-      check = false;
-      break;
-    }
-  }
-  if (check == true) {
-    //console.log("This is from : " + 4);
-    return true;
-  }
-
-  return false;
-}
 
 function checkThreeLeft(playerCode) {
   return (numberOfTurns >= 18 && (((playerCode == 1) ? greenBlocks : redBlocks) == 3));
@@ -654,9 +645,6 @@ function allArePartOfMill(playerCode) {
   }
   return true;
 }
-
-
-
 function update() {
   // Update player turn
   if (numberOfTurns % 2 != 0) {

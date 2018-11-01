@@ -27,7 +27,7 @@
 
 
 body {
-    background: url("/mainback.jpg") no-repeat center center fixed;
+    background: url("../mainback.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -40,7 +40,7 @@ body {
 canvas {
     z-index: -1;
     margin: auto;
-    background: url("/background.png") no-repeat center;
+    background: url("../background.png") no-repeat center;
     background-size: cover;
 
     /* width: 550px;    */
