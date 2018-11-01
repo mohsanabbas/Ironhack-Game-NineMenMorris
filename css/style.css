@@ -1,0 +1,48 @@
+.mid {
+    text-align: center;
+    margin: auto;
+}
+
+.header {
+    margin: 10px;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.turn {
+    margin-left: 28%;
+    margin-bottom: 1%;
+    float: left;
+    color: yellow;
+}
+
+.message {
+    margin-right: 20%;
+    margin-bottom: 1%;
+    float: right;
+    color: yellow;
+}
+
+
+
+body {
+    background: url("/mainback.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 100%;
+    /* color: #FFF; */
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    z-index: -1;
+    margin: auto;
+    background: url("/background.png") no-repeat center;
+    background-size: cover;
+
+    /* width: 550px;    */
+    /* border: 1px solid #d3d3d3; */
+}
