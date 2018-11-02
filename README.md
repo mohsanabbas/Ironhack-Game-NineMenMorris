@@ -1,12 +1,12 @@
 
-#Nine Men Morris Browser Game
+# Nine Men Morris Browser Game
 
-##History and Rules
-###History
+## History and Rules
+### History
 Nine Men’s Morris is an ancient game, popular in Ancient Rome and the medieval period. No one really knows where and when the game originated. The oldest building that has a Nine Men’s Morris board carved into its stones is an Egyptian temple at Kurna, Egypt, which dates to roughly 1400 BCE. However, it is not known when the game board itself was carved into the Kurna temple’s roofing slabs; was it at the time of the construction or much later in history. There are many Nine Men’s Morris carved into various buildings’ stones through out the Roman Empire and in the seats of many medieval cathedrals.
 
 
-###Rules
+### Rules
 here are 2 players in the game.
 The board consists of a grid of 3 squares one inside the other, with lines connecting the 24 intersections on which pieces can be placed.
 Each player has 9 pieces, called “men” of a given color.
